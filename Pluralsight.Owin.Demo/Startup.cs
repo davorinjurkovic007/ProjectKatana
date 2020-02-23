@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using Nancy.Owin;
+using System.Net;
+using System.Web.Http;
 
 namespace Pluralsight.Owin.Demo
 {
@@ -26,11 +29,22 @@ namespace Pluralsight.Owin.Demo
                     Debug.WriteLine("Request took: " + watch.ElapsedMilliseconds + "ms");
                 }
             });
-            
-            app.Use(async (ctx, next) => {
-                await ctx.Response.WriteAsync("<html><head></head><body>Hello World</body></html>");
-                Debug.WriteLine("Just after hello world: " + ctx.Request.Path);
+
+            var config = new HttpConfiguration();
+            config.MapHttpAttributeRoutes();
+            app.UseWebApi(config);
+
+            //app.Map("/nancy", mappedApp => { mappedApp.UseNancy(); });
+            app.UseNancy(configNancy =>
+            {
+                configNancy.PassThroughWhenStatusCodesAre(Nancy.HttpStatusCode.NotFound);
             });
+
+            // Comment out becouse ASP.NET MVC. It wont work if this is in place
+            //app.Use(async (ctx, next) => {
+            //    await ctx.Response.WriteAsync("<html><head></head><body>Hello World</body></html>");
+            //    Debug.WriteLine("Just after hello world: " + ctx.Request.Path);
+            //});
         }
     }
 }
