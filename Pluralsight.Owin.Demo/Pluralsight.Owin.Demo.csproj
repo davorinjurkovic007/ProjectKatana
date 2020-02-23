@@ -50,11 +50,20 @@
     <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Nancy, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.2.0.0\lib\net452\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.MSOwinSecurity, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.MSOwinSecurity.3.0.0\lib\net452\Nancy.MSOwinSecurity.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Owin, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.Owin.2.0.0\lib\net452\Nancy.Owin.dll</HintPath>
@@ -120,14 +129,17 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HelloWorldApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SecretController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Middleware\DebugMiddleware.cs" />
     <Compile Include="Middleware\DebugMiddlewareExtensions.cs" />
     <Compile Include="Middleware\DebugMiddlewareOptions.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Modules\NancyDemoModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -135,6 +147,8 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Secret\Index.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

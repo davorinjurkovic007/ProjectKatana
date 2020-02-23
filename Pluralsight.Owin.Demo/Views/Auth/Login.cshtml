@@ -1,0 +1,38 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Pluralsight.Owin.Demo.Models.LoginModel>
+@using System.Web.Mvc.Html
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div> 
+        @using (var form = Html.BeginForm())
+        {
+            <div>
+                @Html.LabelFor(x => x.Username)
+                @Html.TextBoxFor(x => x.Username)
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Password)
+                @Html.PasswordFor(x => x.Password)
+            </div>
+            <div>
+                <input type="submit" value="Log in" />
+                @foreach(var claim in ((System.Security.Claims.ClaimsPrincipal)User).Claims)
+                {
+                    <div>
+                        @claim.Type : @claim.Value
+                    </div>
+                }
+            </div>
+            <div>
+                <a href="/Auth/Logout">Log out</a>
+            </div>
+        }
+    </div>
+</body>
+</html>
