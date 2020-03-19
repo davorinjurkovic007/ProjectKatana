@@ -15,3 +15,9 @@ Just basic example how to make basic project using OWIN with Katana
 * XXXMiddleware class
 * XXXMiddlewareOptions class
 * XXXMiddlewareExtensions
+
+## Integrating Framework
+We loked at how we could take NancyFx and ASP.NET Web API and plug them into the pipelne, 
+lifting the abstraciton level of that delopment API a whole lot by giving us a much easier 
+API to program against. 
+And in the end we add ASP.NET MVC
