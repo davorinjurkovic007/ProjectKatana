@@ -49,11 +49,12 @@ namespace Pluralsight.Owin.Demo
             config.MapHttpAttributeRoutes();
             app.UseWebApi(config);
 
-            app.Map("/nancy", mappedApp => { mappedApp.UseNancy(); });
-            //app.UseNancy(configNancy =>
-            //{
-            //    configNancy.PassThroughWhenStatusCodesAre(Nancy.HttpStatusCode.NotFound);
-            //});
+            //app.Map("/nancy", mappedApp => { mappedApp.UseNancy(); });
+            //app.UseNancy();
+            app.UseNancy(configNancy =>
+            {
+                configNancy.PassThroughWhenStatusCodesAre(Nancy.HttpStatusCode.NotFound);
+            });
 
             // Comment out becouse ASP.NET MVC. It wont work if this is in place
             //app.Use(async (ctx, next) => {
