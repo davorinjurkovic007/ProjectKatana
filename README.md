@@ -19,5 +19,13 @@ Just basic example how to make basic project using OWIN with Katana
 ## Integrating Framework
 We loked at how we could take NancyFx and ASP.NET Web API and plug them into the pipelne, 
 lifting the abstraciton level of that delopment API a whole lot by giving us a much easier 
-API to program against. 
+API to program against.  
 And in the end we add ASP.NET MVC
+
+## Securing OWIN Pipelines
+* Add CookieAuthenticationMiddleware
+* Authenticate user
+  - IAuthenticationManager.SignIn()
+* Use the user and the user's claims
+* Log out user
+  - IAuthenticationManager.SignOut()
