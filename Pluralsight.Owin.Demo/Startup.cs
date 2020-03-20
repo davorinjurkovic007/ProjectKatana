@@ -49,12 +49,14 @@ namespace Pluralsight.Owin.Demo
             config.MapHttpAttributeRoutes();
             app.UseWebApi(config);
 
-            //app.Map("/nancy", mappedApp => { mappedApp.UseNancy(); });
+            app.Map("/nancy", mappedApp => { mappedApp.UseNancy(); });
             //app.UseNancy();
-            app.UseNancy(configNancy =>
-            {
-                configNancy.PassThroughWhenStatusCodesAre(Nancy.HttpStatusCode.NotFound);
-            });
+            // This si comment becouse security part. If we try to login, Nancy part is messing. 
+            // So, if we try to working with login, simple solution is to remap Nany. So we use Map
+            //app.UseNancy(configNancy =>
+            //{
+            //    configNancy.PassThroughWhenStatusCodesAre(Nancy.HttpStatusCode.NotFound);
+            //});
 
             // Comment out becouse ASP.NET MVC. It wont work if this is in place
             //app.Use(async (ctx, next) => {
