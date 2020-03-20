@@ -9,10 +9,6 @@ namespace Pluralsight.Owin.Demo.Controllers
     [RoutePrefix("api")]
     public class HelloWorldApiController : ApiController
     {
-        /// <summary>
-        /// Path will be /api/hello for this action
-        /// </summary>
-        /// <returns></returns>
         [Route("hello")]
         [HttpGet]
         public IHttpActionResult HelloWorld()

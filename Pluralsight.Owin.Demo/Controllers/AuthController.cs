@@ -10,7 +10,6 @@ namespace Pluralsight.Owin.Demo.Controllers
 {
     public class AuthController : Controller
     {
-        // GET: Auth
         public ActionResult Login()
         {
             var model = new LoginModel();
@@ -39,5 +38,6 @@ namespace Pluralsight.Owin.Demo.Controllers
             HttpContext.GetOwinContext().Authentication.SignOut();
             return Redirect("/");
         }
+
     }
 }

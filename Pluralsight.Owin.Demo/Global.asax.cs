@@ -14,7 +14,7 @@ namespace Pluralsight.Owin.Demo
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            RouteTable.Routes.MapRoute(name: "Default",
+            RouteTable.Routes.MapRoute(name: "Default", 
                 url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Index" });
         }

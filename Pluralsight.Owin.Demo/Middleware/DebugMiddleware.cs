@@ -10,38 +10,36 @@ using AppFunc = System.Func<
     System.Threading.Tasks.Task
 >;
 
-namespace Pluralsight.Owin.Demo
+namespace Pluralsight.Owin.Demo.Middleware
 {
     public class DebugMiddleware
     {
-        readonly AppFunc _next;
-        private readonly DebugMiddlewareOptions options;
+        AppFunc _next;
+        DebugMiddlewareOptions _options;
 
         public DebugMiddleware(AppFunc next, DebugMiddlewareOptions options)
         {
             _next = next;
-            this.options = options;
+            _options = options;
 
-            if(this.options.OnIncomingRequest == null)
+            if(_options.OnIncomingRequest == null)
             {
-                this.options.OnIncomingRequest = ctx => { Debug.WriteLine("Incoming request in Options: " + ctx.Request.Path); };
+                _options.OnIncomingRequest = ctx => { Debug.WriteLine("Incoming request: " + ctx.Request.Path); };
             }
-
-            if (this.options.OnOutgoingRequest == null)
+            
+            if(_options.OnOutgoingRequest == null)
             {
-                this.options.OnOutgoingRequest = ctx => { Debug.WriteLine("Outgoing request in Options: " + ctx.Request.Path); };
+                _options.OnOutgoingRequest = ctx => { Debug.WriteLine("Outgoing request: " + ctx.Request.Path); };
             }
         }
 
-        public async Task Invoke(IDictionary<string, object> enviroment)
+        public async Task Invoke(IDictionary<string, object> environment)
         {
-            var ctx = new OwinContext(enviroment);
-            // Alternative call
-            // var path = (string)enviroment["owin.RequestPath"];
+            var ctx = new OwinContext(environment);
 
-            options.OnIncomingRequest(ctx);
-            await _next(enviroment);
-            options.OnOutgoingRequest(ctx);
+            _options.OnIncomingRequest(ctx);
+            await _next(environment);
+            _options.OnOutgoingRequest(ctx);
         }
     }
 }

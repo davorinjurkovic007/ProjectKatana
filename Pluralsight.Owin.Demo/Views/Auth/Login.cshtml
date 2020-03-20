@@ -22,15 +22,6 @@
             </div>
             <div>
                 <input type="submit" value="Log in" />
-                @foreach(var claim in ((System.Security.Claims.ClaimsPrincipal)User).Claims)
-                {
-                    <div>
-                        @claim.Type : @claim.Value
-                    </div>
-                }
-            </div>
-            <div>
-                <a href="/Auth/Logout">Log out</a>
             </div>
         }
     </div>
